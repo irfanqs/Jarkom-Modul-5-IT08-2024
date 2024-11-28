@@ -34,3 +34,232 @@
 | A1     | 192.237.1.216     | 255.255.255.252  | 192.237.1.219   | 192.237.1.217 - 192.237.1.218 |
 | A5     | 192.237.1.220     | 255.255.255.252  | 192.237.1.223   | 192.237.1.221 - 192.237.1.222 |
 | A8     | 192.237.1.224     | 255.255.255.252  | 192.237.1.227   | 192.237.1.225 - 192.237.1.226 |
+
+## Konfigurasi
+- NewEridu
+```
+auto lo
+iface lo inet loopback
+
+auth eth0
+iface eth0 inet dhcp
+
+#A5
+auto eth1
+iface eth1 inet static
+	address 192.237.1.221
+	netmask 255.255.255.252
+
+#A1
+auto eth2
+iface eth2 inet static
+	address 192.237.1.217
+	netmask 255.255.255.252
+```
+
+- SixStreet
+```
+auto lo
+iface lo inet loopback
+
+#A5
+auto eth0
+iface eth0 inet static
+    address 192.237.1.222
+    netmask 255.255.255.252
+    gateway 192.237.1.221
+
+#A6
+auto eth2
+iface eth2 inet static
+    address 192.237.1.201
+    netmask 255.255.255.248
+
+#A7
+auto eth1
+iface eth1 inet static
+    address 192.237.1.209
+    netmask 255.255.255.252
+```
+
+- HDD
+```
+#A6
+auto eth0
+iface eth0 inet static
+    address 192.237.1.202
+    netmask 255.255.255.248
+    gateway 192.237.1.201
+```
+
+- Fairy
+```
+#A6
+auto eth0
+iface eth0 inet static
+    address 192.237.1.203
+    netmask 255.255.255.248
+    gateway 192.237.1.201
+```
+
+- ScootOutpost
+```
+auto lo
+iface lo inet loopback
+
+#A7
+auto eth0
+iface eth0 inet static
+    address 192.237.1.210
+    netmask 255.255.255.248
+    gateway 192.237.1.209
+
+#A8
+auto eth1
+iface eth1 inet static
+    address 192.237.1.225
+    netmask 255.255.255.252
+```
+
+- HollowZero
+```
+#A8
+auto eth0
+iface eth0 inet static
+    address 192.237.1.226
+    netmask 255.255.255.252
+    gateway 192.237.1.225
+```
+
+- OuterRing
+```
+auto lo
+iface lo inet loopback
+
+#A7
+auto eth0
+iface eth0 inet static
+    address 192.237.1.211
+    netmask 255.255.255.248
+    gateway 192.237.1.209
+
+#A9
+auto eth1
+iface eth1 inet static
+    address 192.237.1.129
+    netmask 255.255.255.192
+```
+
+- Caesar (50 Host)
+```
+#A9
+auto eth0
+iface eth0 inet static
+    address 192.237.1.130
+    netmask 255.255.255.192
+    gateway 192.237.1.129
+```
+
+- Burnice (5 Host)
+```
+#A9
+auto eth0
+iface eth0 inet static
+    address 192.237.1.131
+    netmask 255.255.255.192
+    gateway 192.237.1.129
+```
+
+- LuminaSquare
+```
+auto lo
+iface lo inet loopback
+
+#A1
+auto eth0
+iface eth0 inet static
+    address 192.237.1.218
+    netmask 255.255.255.252
+    gateway 192.237.1.217
+
+#A3
+auto eth1
+iface eth1 inet static
+    address 192.237.0.1
+    netmask 255.255.255.0
+
+#A2
+auto eth2
+iface eth2 inet static
+    address 192.237.1.193
+    netmask 255.255.255.248
+```
+  
+- Jane (200 Host)
+```
+#A3
+auto eth0
+iface eth0 inet static
+    address 192.237.0.2
+    netmask 255.255.255.0
+    gateway 192.237.0.1
+```
+
+- Policeboo (30 Host)
+```
+#A3
+auto eth0
+iface eth0 inet static
+    address 192.237.0.3
+    netmask 255.255.255.0
+    gateway 192.237.0.1
+```
+
+- HIA
+```
+#A2
+auto eth0
+iface eth0 inet static
+    address 192.237.1.194
+    netmask 255.255.255.248
+    gateway 192.237.1.193
+```
+
+- BalletTwins
+```
+auto lo
+iface lo inet loopback
+
+#A2
+auto eth0
+iface eth0 inet static
+    address 192.237.1.195
+    netmask 255.255.255.248
+    gateway 192.237.1.193
+
+#A4
+auto eth1
+iface eth1 inet static
+    address 192.237.1.1
+    netmask 255.255.255.128
+```
+
+- Lycaon (20 Host)
+```
+#A4
+auto eth0
+iface eth0 inet static
+    address 192.237.1.2
+    netmask 255.255.255.128
+    gateway 192.237.1.1
+```
+
+- Ellen (100 Host)
+```
+#A4
+auto eth0
+iface eth0 inet static
+    address 192.237.1.3
+    netmask 255.255.255.128
+    gateway 192.237.1.1
+```

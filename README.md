@@ -276,5 +276,111 @@ iface eth0 inet static
 ![image](https://github.com/user-attachments/assets/c707b073-810f-42a1-a90d-f0ed5ab64ef6)
 ![image](https://github.com/user-attachments/assets/2b471053-941e-4e4e-9761-0ebd278c4803)
 
+## Misi 2 Nomor 1
+Jalankan skrip berikut di node Fairy
+```
+#/bin/bash
+
+export DEBIAN_FRONTEND=noninteractive
+apt update
+apt install isc-dhcp-server netcat -y
+
+service isc-dhcp-server start
+
+cp ~/dhcpd.conf /etc/dhcp/dhcpd.conf
+echo INTERFACESv4=\"eth0\" >/etc/default/isc-dhcp-server
+
+service rsyslog start
+
+service isc-dhcp-server restart
+```
+
+Buatlah file bernama dhcpd.conf yang berisikan config subnet dan netmask berikut:
+<details>
+  <summary>Click to expand</summary>
+  
+```
+#A9
+subnet 192.237.1.128 netmask 255.255.255.192 {
+  range 192.237.1.130 192.237.1.189;
+  option routers 192.237.1.129;
+  option broadcast-address 192.237.1.190;
+  option domain-name-servers 192.237.1.202;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+#A4
+subnet 192.237.1.0 netmask 255.255.255.128 {
+  range 192.237.1.2 192.237.1.21;
+  range 192.237.1.22 192.237.1.125;
+  option routers 192.237.1.1;
+  option broadcast-address 192.237.1.126;
+  option domain-name-servers 192.237.1.202;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+#A3
+subnet 192.237.0.0 netmask 255.255.255.0 {
+  range 192.237.0.2 192.237.0.253;
+  range 192.237.0.2 192.237.0.253;
+  option routers 192.237.0.1;
+  option broadcast-address 192.237.1.254;
+  option domain-name-servers 192.237.1.202;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+#A6
+subnet 192.237.1.200 netmask 255.255.255.248 {}
+```
+</details>
+
+## Misi 2 Nomor 2
+Dalam node Fairy, jalankan command berikut
+```
+iptables -P INPUT DROP
+iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT --reject-with icmp-host-unreachable
+```
+Dengan ini, semua node yang melakukan ping ke Fairy akan tertulis Host Unreachable dan Fairy bisa melakukan ping ke node manapun
+
+**Hasil**
+Ping dari node HIA
+![image](https://github.com/user-attachments/assets/967d8895-54b1-4daf-997b-9b690c2855f9)
+
+Ping dari node Caesar
+![image](https://github.com/user-attachments/assets/49caf2de-6ead-4395-b254-083e1bc2d96a)
+
+Ping Fairy ke node HIA
+![image](https://github.com/user-attachments/assets/e5b2f31f-e3f1-4398-966b-27f6a48b8173)
+
+Ping Fairy ke node Caesar
+![image](https://github.com/user-attachments/assets/5ebe3116-ad90-45e0-8005-5c0af532bc60)
+
+## Misi 2 Nomor 3
+Dalam node HDD, jalankan command berikut
+```
+iptables -A INPUT -p tcp -s 192.237.1.203 --dport 8080 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8080 -j REJECT
+```
+
+**Hasil**
+Koneksi dari Fairy ke HDD
+![image](https://github.com/user-attachments/assets/43fe40b2-3dd2-4a3e-8de1-3c6a091f4772)
+![image](https://github.com/user-attachments/assets/34a33b03-df6a-4d40-88a1-d64d20fea021)
+
+Ping dari node lain ke HDD
+![image](https://github.com/user-attachments/assets/6bf1a4c3-719f-4395-a9b1-2edf0063931e)
+
+## Misi 2 Nomor 4
+
+
+
+
+
+
 
 

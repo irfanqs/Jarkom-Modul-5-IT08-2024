@@ -263,3 +263,18 @@ iface eth0 inet static
     netmask 255.255.255.128
     gateway 192.237.1.1
 ```
+## Misi 1 Nomor 4
+**Testing web server HollowZero dan HIA**
+![image](https://github.com/user-attachments/assets/36779bd4-a3b5-4546-b3b9-4b7ffa2d596b)
+![image](https://github.com/user-attachments/assets/37ea6c27-fe05-4d4e-acfc-1e6b55ffacfd)
+
+**Testing IP Client mendapatkan IP dari DHCP server**
+![image](https://github.com/user-attachments/assets/85bf7fcb-fc5c-4257-9415-4d309ae507fa)
+![image](https://github.com/user-attachments/assets/24e5bdf6-0e25-4dd5-803b-a7274ef4576d)
+![image](https://github.com/user-attachments/assets/e1f941ee-71a4-4942-ab38-a5e4da35bc46)
+![image](https://github.com/user-attachments/assets/768aa94d-afaa-4952-a2fa-261abb05ce9c)
+![image](https://github.com/user-attachments/assets/c707b073-810f-42a1-a90d-f0ed5ab64ef6)
+![image](https://github.com/user-attachments/assets/2b471053-941e-4e4e-9761-0ebd278c4803)
+
+
+

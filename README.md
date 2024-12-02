@@ -370,6 +370,7 @@ iptables -A INPUT -p tcp --dport 8080 -j REJECT
 
 **Hasil**
 Koneksi dari Fairy ke HDD
+
 ![image](https://github.com/user-attachments/assets/43fe40b2-3dd2-4a3e-8de1-3c6a091f4772)
 ![image](https://github.com/user-attachments/assets/34a33b03-df6a-4d40-88a1-d64d20fea021)
 
@@ -390,18 +391,16 @@ iptables -A INPUT -p tcp --dport 80 -j REJECT
 Ini akan memblokir semua node yang mencoba untuk melakukan ping ke HollowZero dan akan mengizinkan client dari SoC dan PubSec saja (mulai Senin hingga Jumat)
 
 **Hasil**
+
 ![image](https://github.com/user-attachments/assets/3a5f283d-5331-44d5-a828-ff841204219f)
 ![image](https://github.com/user-attachments/assets/563ebcd5-4a18-433e-b95f-4a16138ade58)
 
 Ping dari client yang tidak diizinkan
-
 ![image](https://github.com/user-attachments/assets/125dc1a2-ca04-4144-8e69-fcd6d1f9c6f8)
 
 Apabila client yang diizinkan mengakses di waktu yang tidak ditentukan
 
-![image](https://github.com/user-attachments/assets/3eaf08c2-fd02-4819-871b-f0984df6acf3)
-![image](https://github.com/user-attachments/assets/3a9e0905-033a-4ee6-a483-d47de1beb5ef)
-
+![image](https://github.com/user-attachments/assets/713d8dfe-a992-43b3-a440-d84933470a8b)
 
 
 

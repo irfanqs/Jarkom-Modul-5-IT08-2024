@@ -348,16 +348,17 @@ iptables -A INPUT -p icmp --icmp-type echo-request -j REJECT --reject-with icmp-
 Dengan ini, semua node yang melakukan ping ke Fairy akan tertulis Host Unreachable dan Fairy bisa melakukan ping ke node manapun
 
 **Hasil**
-Ping dari node HIA
+
+Ping dari node HIA <br>
 ![image](https://github.com/user-attachments/assets/967d8895-54b1-4daf-997b-9b690c2855f9)
 
-Ping dari node Caesar
+Ping dari node Caesar <br>
 ![image](https://github.com/user-attachments/assets/49caf2de-6ead-4395-b254-083e1bc2d96a)
 
-Ping Fairy ke node HIA
+Ping Fairy ke node HIA <br>
 ![image](https://github.com/user-attachments/assets/e5b2f31f-e3f1-4398-966b-27f6a48b8173)
 
-Ping Fairy ke node Caesar
+Ping Fairy ke node Caesar <br>
 ![image](https://github.com/user-attachments/assets/5ebe3116-ad90-45e0-8005-5c0af532bc60)
 
 ## Misi 2 Nomor 3
@@ -373,9 +374,36 @@ Koneksi dari Fairy ke HDD
 ![image](https://github.com/user-attachments/assets/34a33b03-df6a-4d40-88a1-d64d20fea021)
 
 Ping dari node lain ke HDD
+
 ![image](https://github.com/user-attachments/assets/6bf1a4c3-719f-4395-a9b1-2edf0063931e)
 
 ## Misi 2 Nomor 4
+Dalam node HollowZero, jalankan command berikut
+```
+iptables -A INPUT -p tcp -s 192.237.1.131 --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp -s 192.237.1.130 --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp -s 192.237.0.2 --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp -s 192.237.0.3 --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j REJECT
+```
+
+Ini akan memblokir semua node yang mencoba untuk melakukan ping ke HollowZero dan akan mengizinkan client dari SoC dan PubSec saja (mulai Senin hingga Jumat)
+
+**Hasil**
+![image](https://github.com/user-attachments/assets/3a5f283d-5331-44d5-a828-ff841204219f)
+![image](https://github.com/user-attachments/assets/563ebcd5-4a18-433e-b95f-4a16138ade58)
+
+Ping dari client yang tidak diizinkan
+
+![image](https://github.com/user-attachments/assets/125dc1a2-ca04-4144-8e69-fcd6d1f9c6f8)
+
+Apabila client yang diizinkan mengakses di waktu yang tidak ditentukan
+
+![image](https://github.com/user-attachments/assets/3eaf08c2-fd02-4819-871b-f0984df6acf3)
+![image](https://github.com/user-attachments/assets/3a9e0905-033a-4ee6-a483-d47de1beb5ef)
+
+
+
 
 
 

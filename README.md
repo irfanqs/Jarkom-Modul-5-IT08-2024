@@ -1,4 +1,4 @@
-# Jarkom-Modul-5-IT08-2024
+![image](https://github.com/user-attachments/assets/ba18daab-b66a-47c8-9a6e-f3a6167a78ef)# Jarkom-Modul-5-IT08-2024
 
 | Nama          | NRP          |
 | ------------- | ------------ |
@@ -401,6 +401,106 @@ Ping dari client yang tidak diizinkan
 Apabila client yang diizinkan mengakses di waktu yang tidak ditentukan
 
 ![image](https://github.com/user-attachments/assets/713d8dfe-a992-43b3-a440-d84933470a8b)
+
+## Misi 2 Nomor 5
+Dalam node HIA, jalankan command berikut
+```
+iptables -A INPUT -p tcp -s <IP Ellen> --dport 80 -m time --timestart 08:00 --timestop 21:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp -s <IP Lycaon> --dport 80 -m time --timestart 08:00 --timestop 21:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp -s <IP Jane> --dport 80 -m time --timestart 03:00 --timestop 23:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp -s <IP Policeboo> --dport 80 -m time --timestart 03:00 --timestop 23:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j REJECT
+```
+
+**Hasil**
+
+![image](https://github.com/user-attachments/assets/a31a84ca-5000-4358-99d6-3d9672791081)
+![image](https://github.com/user-attachments/assets/e7660b02-44a7-44c5-9380-d65f20eb1592)
+
+Jika diakses tidak pada waktunya <br>
+![image](https://github.com/user-attachments/assets/2a912b65-ebff-41fc-9f65-a0201ce60f35)
+![image](https://github.com/user-attachments/assets/76f9f6ec-d386-40d8-944f-ae6643750f13)
+
+Jika diakses oleh client lain <br>
+![image](https://github.com/user-attachments/assets/5cb0cd3e-1ee2-449a-81ae-1c7fa16a175b)
+
+## Misi 2 Nomor 6
+Dalam node HIA, jalankan command berikut
+```
+iptables -N PORTSCAN
+iptables -A INPUT -p tcp --dport 1:100 -m state --state NEW -m recent --set --name portscan
+iptables -A INPUT -p tcp --dport 1:100 -m state --state NEW -m recent --update --seconds 10 --hitcount 25 --name portscan -j PORTSCAN
+iptables -A PORTSCAN -m recent --set --name blacklist
+iptables -A PORTSCAN -j DROP
+iptables -A INPUT -m recent --name blacklist --rcheck -j REJECT
+iptables -A OUTPUT -m recent --name blacklist --rcheck -j REJECT
+iptables -A PORTSCAN -j LOG --log-prefix='PORT SCAN DETECTED' --log-level 4
+```
+
+**Hasil**
+
+Jalankan `nmap -p 1-100 192.237.1.194` pada node Jane dan seharusnya Jane tidak bisa melakukan ping, nc, dan curl ke HIA
+
+![image](https://github.com/user-attachments/assets/a8e01153-9e40-48d8-974d-c5619a0e96dd)
+![image](https://github.com/user-attachments/assets/ea5011d7-fd24-47f6-8acf-dfb29679dbb1)
+
+Client tidak diblokir jika dalam rentang waktu 10 detik hanya melakukan scanning kurang dari 25 port
+![image](https://github.com/user-attachments/assets/f8027dfa-b254-4fd8-a8df-b6305f20971b)
+
+## Misi 2 Nomor 7
+Dalam node HollowZero, jalankan command berikut
+```
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m recent --set
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m recent --update --seconds 1 --hitcount 3 -j REJECT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+```
+
+**Hasil**
+
+Lakukan pengetesan dengan paralel curl seperti `parallel curl -s http://IP-HollowZero ::: IP-Caesar IP-Burnice IP-Jane IP-Policeboo`
+![image](https://github.com/user-attachments/assets/a0ea5b33-d79c-421e-9d94-32b580a18300)
+
+Output hanya muncul 2 kali, artinya iptables berjalan karena 1 IP hanya memperbolehkan 2 koneksi saja
+
+## Misi 2 Nomor 8
+Dalam node Burnice, jalankan command berikut
+```
+iptables -t nat -A PREROUTING -p tcp -j DNAT --to-destination <IP HollowZero> --dport 8080
+iptables -A FORWARD -p tcp -d <IP HollowZero> -j ACCEPT
+```
+
+**Hasil**
+
+
+## Misi 3
+Dalam node Burnice, jalankan command berikut
+```
+iptables --policy INPUT DROP
+iptables --policy OUTPUT DROP
+iptables --policy FORWARD DROP
+```
+
+**Hasil**
+
+![image](https://github.com/user-attachments/assets/bec8f9a8-a8da-45de-b566-653edb038d77)
+![image](https://github.com/user-attachments/assets/d2768e5c-081a-4f25-84c3-b9273df1a2c2)
+![image](https://github.com/user-attachments/assets/c1ad4fd0-b82b-48e0-b619-c06dd515535e)
+![image](https://github.com/user-attachments/assets/8a35d4dd-08cf-4bf3-8a33-7feec3c16136)
+
+Node Burnice tidak dapat melakukan ping dan di ping, serta tidak bisa menerima nc dari node lain
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

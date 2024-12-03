@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ba18daab-b66a-47c8-9a6e-f3a6167a78ef)# Jarkom-Modul-5-IT08-2024
+# Jarkom-Modul-5-IT08-2024
 
 | Nama          | NRP          |
 | ------------- | ------------ |
@@ -488,9 +488,6 @@ iptables --policy FORWARD DROP
 ![image](https://github.com/user-attachments/assets/8a35d4dd-08cf-4bf3-8a33-7feec3c16136)
 
 Node Burnice tidak dapat melakukan ping dan di ping, serta tidak bisa menerima nc dari node lain
-
-
-
 
 
 

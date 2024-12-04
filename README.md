@@ -38,9 +38,6 @@
 ## Konfigurasi
 - NewEridu
 ```
-auto lo
-iface lo inet loopback
-
 auth eth0
 iface eth0 inet dhcp
 
@@ -55,6 +52,28 @@ auto eth2
 iface eth2 inet static
 	address 192.237.1.217
 	netmask 255.255.255.252
+
+#Routing
+#A6
+post-up route add -net 192.237.1.200 netmask 255.255.255.248 gw 192.237.1.222
+
+#A7
+post-up route add -net 192.237.1.208 netmask 255.255.255.248 gw 192.237.1.222
+
+#A8
+post-up route add -net 192.237.1.224 netmask 255.255.255.252 gw 192.237.1.222
+
+#A9
+post-up route add -net 192.237.1.128 netmask 255.255.255.192 gw 192.237.1.222
+
+#A2
+post-up route add -net 192.237.1.192 netmask 255.255.255.248 gw 192.237.1.218
+
+#A3
+post-up route add -net 192.237.0.0 netmask 255.255.255.0 gw 192.237.1.218
+
+#A4
+post-up route add -net 192.237.1.0 netmask 255.255.255.128 gw 192.237.1.218
 ```
 
 - SixStreet
@@ -80,6 +99,15 @@ auto eth1
 iface eth1 inet static
     address 192.237.1.209
     netmask 255.255.255.252
+
+#Routing
+#A8
+post-up route add -net 192.237.1.224 netmask 255.255.255.252 gw 192.237.1.210
+
+#A9
+post-up route add -net 192.237.1.128 netmask 255.255.255.192 gw 192.237.1.211
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - HDD
@@ -90,6 +118,8 @@ iface eth0 inet static
     address 192.237.1.202
     netmask 255.255.255.248
     gateway 192.237.1.201
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Fairy
@@ -100,6 +130,18 @@ iface eth0 inet static
     address 192.237.1.203
     netmask 255.255.255.248
     gateway 192.237.1.201
+
+#Routing
+#A9
+post-up route add -net 192.237.1.128 netmask 255.255.255.192 gw 192.237.1.201
+
+#A3
+post-up route add -net 192.237.0.0 netmask 255.255.255.0 gw 192.237.1.201
+
+#A4
+post-up route add -net 192.237.1.0 netmask 255.255.255.128 gw 192.237.1.201
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - ScootOutpost
@@ -119,6 +161,12 @@ auto eth1
 iface eth1 inet static
     address 192.237.1.225
     netmask 255.255.255.252
+
+#Routing
+#A5
+post-up route add -net 192.237.1.220 netmask 255.255.255.252 gw 192.237.1.209
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - HollowZero
@@ -129,6 +177,11 @@ iface eth0 inet static
     address 192.237.1.226
     netmask 255.255.255.252
     gateway 192.237.1.225
+
+#Routing
+post-up route add -net 192.237.1.220 netmask 255.255.255.252 gw 192.237.1.209
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - OuterRing
@@ -148,6 +201,12 @@ auto eth1
 iface eth1 inet static
     address 192.237.1.129
     netmask 255.255.255.192
+
+#Routing
+#A5
+post-up route add -net 192.237.1.220 netmask 255.255.255.252 gw 192.237.1.209
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Caesar (50 Host)
@@ -193,6 +252,12 @@ auto eth2
 iface eth2 inet static
     address 192.237.1.193
     netmask 255.255.255.248
+
+#Routing
+#A4
+post-up route add -net 192.237.1.0 netmask 255.255.255.128 gw 192.237.1.195
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
   
 - Jane (200 Host)
@@ -223,6 +288,12 @@ iface eth0 inet static
     address 192.237.1.194
     netmask 255.255.255.248
     gateway 192.237.1.193
+
+#Routing
+#A1
+post-up route add -net 192.237.1.216 netmask 255.255.255.252 gw 192.237.1.193
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - BalletTwins
@@ -242,6 +313,12 @@ auto eth1
 iface eth1 inet static
     address 192.237.1.1
     netmask 255.255.255.128
+
+#Routing
+#A1
+post-up route add -net 192.237.1.216 netmask 255.255.255.128 gw 192.237.1.193
+
+up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Lycaon (20 Host)

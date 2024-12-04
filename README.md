@@ -548,6 +548,9 @@ iptables -A FORWARD -p tcp -d <IP HollowZero> -j ACCEPT
 
 **Hasil**
 
+![image](https://github.com/user-attachments/assets/d0ad89e0-cd88-4934-9dda-e41e536fee17)
+![image](https://github.com/user-attachments/assets/0108210d-692d-4c4f-841f-6f86971cb4f6)
+![image](https://github.com/user-attachments/assets/746f0a02-e861-4c79-9f27-dd11437c2534)
 
 ## Misi 3
 Dalam node Burnice, jalankan command berikut
